@@ -2,17 +2,11 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml first for better caching
-COPY protien/mvnw protien/mvnw
-COPY protien/mvnw.cmd protien/mvnw.cmd
-COPY protien/.mvn protien/.mvn
-COPY protien/pom.xml protien/
+# Copy the entire protien directory
+COPY protien/ ./protien/
 
-# Download dependencies
-RUN cd protien && ./mvnw dependency:go-offline -B
-
-# Copy source code
-COPY protien/src protien/src
+# Make Maven wrapper executable
+RUN chmod +x ./protien/mvnw
 
 # Build the application
 RUN cd protien && ./mvnw clean package -DskipTests
