@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: protien-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SPRING_PROFILE
+        value: prod
+      - key: DB_URL
+        value: jdbc:postgresql://dpg-d5bl5sh5pdvs73bmusfg-a.virginia-postgres.render.com:5432/protien_db
+      - key: DB_USER
+        value: protien_db_user
+      - key: DB_PASS
+        value: elEGTLmq4JLr0nWOq9HJWA39m3jP5Ozn
+      - key: FRONTEND_URL
+        value: https://6956ddccba8ac77ccdbda48e--resplendent-marzipan-4819e7.netlify.app
