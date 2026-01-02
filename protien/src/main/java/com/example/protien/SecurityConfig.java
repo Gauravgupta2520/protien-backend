@@ -55,8 +55,13 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
-        // Use origin patterns to allow both specific origin and tools like Postman
-        config.setAllowedOriginPatterns(List.of("http://localhost:*", "*"));
+        // Support both local development and deployed frontend
+        config.setAllowedOriginPatterns(List.of(
+            "http://localhost:*",
+            "https://6956ddccba8ac77ccdbda48e--resplendent-marzipan-4819e7.netlify.app",
+            "https://resplendent-marzipan-4819e7.netlify.app",
+            "*"
+        ));
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization"));
