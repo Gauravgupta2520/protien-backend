@@ -1,5 +1,6 @@
 package com.example.protien;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/chat")
+@ConditionalOnBean(OpenAIService.class)
 public class ChatController {
 
     private final OpenAIService openAIService;
