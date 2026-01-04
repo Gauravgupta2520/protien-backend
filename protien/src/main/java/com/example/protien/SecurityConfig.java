@@ -60,6 +60,7 @@ public class SecurityConfig {
             "http://localhost:*",
             "https://6956ddccba8ac77ccdbda48e--resplendent-marzipan-4819e7.netlify.app",
             "https://resplendent-marzipan-4819e7.netlify.app",
+            "https://rocketmeals.netlify.app",
             "*"
         ));
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS","PATCH"));
