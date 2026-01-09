@@ -2,6 +2,7 @@ package com.example.protien;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/chat")
 @ConditionalOnBean(OpenAIService.class)
+@CrossOrigin(origins = {"https://rocketmeals.netlify.app", "http://localhost:5173", "http://localhost:3000"})
 public class ChatController {
 
     private final OpenAIService openAIService;

@@ -5,17 +5,18 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//importing path variable annotation
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = {"https://rocketmeals.netlify.app", "http://localhost:5173", "http://localhost:3000"})
 public class UserController {
 
     private final UserService userService;
@@ -98,6 +99,19 @@ public class UserController {
             ? "User fetched successfully - You got this from Redis!" 
             : "User fetched successfully";
         return new ApiResponse(true, message, result.getData());
+    }
+
+    // -------------------------------
+    // DEBUG — Simple test endpoint (dev-only)
+    // -------------------------------
+    @GetMapping("/debug/test")
+    public ApiResponse debugTest() {
+        logger.info("Debug test endpoint called");
+        return new ApiResponse(true, "Backend is working!", new java.util.HashMap<String, Object>() {{
+            put("timestamp", System.currentTimeMillis());
+            put("status", "OK");
+            put("frontend", "rocketmeals.netlify.app");
+        }});
     }
 
     // -------------------------------
